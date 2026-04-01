@@ -1,8 +1,5 @@
-import { ProgressContext } from '@/context/ProgressContext';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useContext } from 'react';
-import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ProgressProvider } from '../context/ProgressContext';
 
@@ -17,8 +14,8 @@ function RootLayoutNav() {
       }}
     >
       <Stack.Screen name="index" options={{ title: 'TOEFL Speaking' }} />
-      <Stack.Screen name="topic/[id]" options={{ title: 'Topic Levels' }} />
-      <Stack.Screen name="level/[topicId]/[level]" options={{ title: 'Practice' }} />
+      <Stack.Screen name="topic/[id]" options={{ title: 'Topic' }} />
+      <Stack.Screen name="question/[topicId]/[questionId]" options={{ title: 'Question' }} />
       <Stack.Screen name="results" options={{ title: 'Results', headerBackVisible: false }} />
     </Stack>
   );

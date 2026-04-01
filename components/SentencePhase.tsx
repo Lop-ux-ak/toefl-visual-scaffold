@@ -1,4 +1,3 @@
-import EmojiCard from '@/components/EmojiCard';
 import { Colors, FontSizes, Spacing, BorderRadius } from '@/constants/theme';
 import { StudyContent } from '@/data/types';
 import { useState } from 'react';
@@ -6,6 +5,10 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
   content: StudyContent;
+}
+
+function speak(text: string) {
+  // TODO: integrate expo-speech
 }
 
 export default function SentencePhase({ content }: Props) {
@@ -21,21 +24,28 @@ export default function SentencePhase({ content }: Props) {
 
   return (
     <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-      <Text style={styles.instruction}>Look at each emoji and say a complete sentence. Then tap to reveal the model answer.</Text>
-      {content.vocabularyCards.map((card, i) => (
-        <View key={card.id} style={styles.sentenceCard}>
+      <Text style={styles.instruction}>Look at each emoji and say complete sentences. Then tap to reveal model sentences.</Text>
+      {content.modelSentences.map((group, i) => (
+        <View key={i} style={styles.sentenceCard}>
           <View style={styles.emojiRow}>
-            <Text style={styles.emoji}>{card.emoji}</Text>
-            <Text style={styles.scene}>{card.scene}</Text>
+            <Text style={styles.emoji}>{group.emoji}</Text>
+            <Text style={styles.scene}>{group.scene}</Text>
           </View>
           <Pressable
             style={[styles.revealBtn, revealedIndices.has(i) && styles.revealedBtn]}
             onPress={() => toggleReveal(i)}
           >
             {revealedIndices.has(i) ? (
-              <Text style={styles.modelSentence}>{content.modelSentences[i] ?? '—'}</Text>
+              <View style={styles.sentencesList}>
+                {group.sentences.map((sentence, j) => (
+                  <Pressable key={j} onPress={() => speak(sentence)} style={styles.sentenceRow}>
+                    <Text style={styles.bullet}>•</Text>
+                    <Text style={styles.modelSentence}>{sentence}</Text>
+                  </Pressable>
+                ))}
+              </View>
             ) : (
-              <Text style={styles.revealHint}>Tap to reveal model sentence</Text>
+              <Text style={styles.revealHint}>Tap to reveal model sentences</Text>
             )}
           </Pressable>
         </View>
@@ -83,23 +93,36 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.border,
     borderRadius: BorderRadius.md,
     padding: Spacing.sm,
-    alignItems: 'center',
   },
   revealedBtn: {
     backgroundColor: Colors.primary + '15',
     borderWidth: 1,
     borderColor: Colors.primary + '40',
   },
+  sentencesList: {
+    gap: Spacing.xs,
+  },
+  sentenceRow: {
+    flexDirection: 'row',
+    gap: Spacing.xs,
+    alignItems: 'flex-start',
+  },
+  bullet: {
+    fontSize: FontSizes.sm,
+    color: Colors.primary,
+    fontWeight: '700',
+  },
   revealHint: {
     fontSize: FontSizes.sm,
     color: Colors.textLight,
     fontStyle: 'italic',
+    textAlign: 'center',
   },
   modelSentence: {
     fontSize: FontSizes.md,
     color: Colors.primary,
     fontWeight: '500',
     lineHeight: 22,
-    textAlign: 'center',
+    flex: 1,
   },
 });

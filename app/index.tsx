@@ -13,8 +13,10 @@ export default function HomeScreen() {
   const getTopicProgress = (topicId: string) => {
     const tp = progress.topics[topicId];
     if (!tp) return 0;
-    const completed = Object.values(tp.levels).filter(l => l.completed).length;
-    return completed / 5;
+    const topic = TOPICS.find(t => t.id === topicId);
+    if (!topic) return 0;
+    const completed = Object.values(tp.questions).filter(q => q.completed).length;
+    return completed / topic.questions.length;
   };
 
   return (

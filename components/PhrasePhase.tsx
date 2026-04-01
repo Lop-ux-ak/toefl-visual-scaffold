@@ -1,27 +1,50 @@
 import { Colors, FontSizes, Spacing, BorderRadius } from '@/constants/theme';
 import { StudyContent } from '@/data/types';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
   content: StudyContent;
 }
 
+function speak(text: string) {
+  // TODO: integrate expo-speech
+}
+
 export default function PhrasePhase({ content }: Props) {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
   return (
     <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-      <Text style={styles.instruction}>Practice these phrase templates out loud. Fill in the blanks with your own words.</Text>
-      {content.phraseFrames.map((frame, i) => (
-        <View key={i} style={styles.frameCard}>
-          <View style={styles.templateRow}>
-            <Text style={styles.number}>{i + 1}</Text>
-            <Text style={styles.template}>{frame.template}</Text>
-          </View>
-          <View style={styles.exampleRow}>
-            <Text style={styles.exampleLabel}>Example: </Text>
-            <Text style={styles.example}>{frame.example}</Text>
-          </View>
-        </View>
-      ))}
+      <Text style={styles.instruction}>Tap each phrase card to see example sentences. Tap a sentence to hear it.</Text>
+      {content.phraseFrames.map((frame, i) => {
+        const isExpanded = expandedIndex === i;
+        return (
+          <Pressable
+            key={i}
+            style={styles.frameCard}
+            onPress={() => setExpandedIndex(isExpanded ? null : i)}
+          >
+            <View style={styles.templateRow}>
+              <Text style={styles.emoji}>{frame.emoji}</Text>
+              <Text style={styles.template}>{frame.template}</Text>
+            </View>
+            {isExpanded && (
+              <View style={styles.sentencesContainer}>
+                {frame.sentences.map((sentence, j) => (
+                  <Pressable key={j} onPress={() => speak(sentence)} style={styles.sentenceRow}>
+                    <Text style={styles.sentenceBullet}>•</Text>
+                    <Text style={styles.sentenceText}>{sentence}</Text>
+                  </Pressable>
+                ))}
+              </View>
+            )}
+            {!isExpanded && (
+              <Text style={styles.tapHint}>Tap to see examples</Text>
+            )}
+          </Pressable>
+        );
+      })}
     </ScrollView>
   );
 }
@@ -53,11 +76,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: Spacing.sm,
   },
-  number: {
-    fontSize: FontSizes.md,
-    fontWeight: '700',
-    color: Colors.primary,
-    minWidth: 20,
+  emoji: {
+    fontSize: 24,
   },
   template: {
     fontSize: FontSizes.md,
@@ -66,20 +86,30 @@ const styles = StyleSheet.create({
     flex: 1,
     lineHeight: 22,
   },
-  exampleRow: {
+  sentencesContainer: {
+    paddingLeft: 36,
+    gap: Spacing.xs,
+  },
+  sentenceRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingLeft: 28,
+    gap: Spacing.xs,
+    alignItems: 'flex-start',
   },
-  exampleLabel: {
-    fontSize: FontSizes.sm,
-    color: Colors.textSecondary,
-    fontStyle: 'italic',
-  },
-  example: {
+  sentenceBullet: {
     fontSize: FontSizes.sm,
     color: Colors.primary,
-    fontStyle: 'italic',
+    fontWeight: '700',
+  },
+  sentenceText: {
+    fontSize: FontSizes.sm,
+    color: Colors.primary,
     flex: 1,
+    lineHeight: 20,
+  },
+  tapHint: {
+    fontSize: FontSizes.xs,
+    color: Colors.textLight,
+    fontStyle: 'italic',
+    paddingLeft: 36,
   },
 });

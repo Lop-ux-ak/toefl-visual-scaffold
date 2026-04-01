@@ -50,21 +50,20 @@ const tierConfig: Record<FeedbackTier, { emoji: string; color: string; label: st
 };
 
 export default function ResultsScreen() {
-  const { topicId, level, duration, target } = useLocalSearchParams<{
+  const { topicId, questionId, duration, target } = useLocalSearchParams<{
     topicId: string;
-    level: string;
+    questionId: string;
     duration: string;
     target: string;
   }>();
   const router = useRouter();
-  const { completeLevel } = useProgress();
+  const { completeQuestion } = useProgress();
 
   const durationNum = parseInt(duration ?? '0', 10);
-  const targetNum = parseInt(target ?? '30', 10);
-  const levelNum = parseInt(level ?? '1', 10);
+  const targetNum = parseInt(target ?? '45', 10);
 
   const topic = TOPICS.find(t => t.id === topicId);
-  const levelData = topic?.levels.find(l => l.level === levelNum);
+  const question = topic?.questions.find(q => q.id === questionId);
 
   const feedback = getMockFeedback(durationNum, targetNum);
   const config = tierConfig[feedback.tier];
@@ -72,8 +71,8 @@ export default function ResultsScreen() {
   const formatTime = (s: number) => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
 
   const handleComplete = () => {
-    if (topicId && levelNum) {
-      completeLevel(topicId, levelNum);
+    if (topicId && questionId) {
+      completeQuestion(topicId, questionId);
     }
     router.push(`/topic/${topicId}`);
   };
@@ -124,10 +123,10 @@ export default function ResultsScreen() {
         </View>
 
         {/* Model response */}
-        {levelData && (
+        {question && (
           <View style={styles.modelSection}>
             <Text style={styles.modelTitle}>Model Response</Text>
-            <Text style={styles.modelText}>{levelData.studyContent.fullModelResponse}</Text>
+            <Text style={styles.modelText}>{question.studyContent.fullModelResponse}</Text>
           </View>
         )}
 

@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function TopicCard({ topic, progress, onPress }: Props) {
-  const completedLevels = Math.round(progress * 5);
+  const completedQuestions = Math.round(progress * topic.questions.length);
 
   return (
     <Pressable style={styles.card} onPress={onPress}>
@@ -18,7 +18,7 @@ export default function TopicCard({ topic, progress, onPress }: Props) {
         <Text style={styles.emojis}>{topic.emojis.split('').slice(0, 3).join('')}</Text>
       </View>
       <Text style={styles.title} numberOfLines={2}>{topic.title}</Text>
-      <Text style={styles.levelText}>{completedLevels}/5 levels</Text>
+      <Text style={styles.levelText}>{completedQuestions}/{topic.questions.length} questions</Text>
       <ProgressBar progress={progress} color={topic.color} height={4} />
     </Pressable>
   );

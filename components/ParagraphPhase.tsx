@@ -23,10 +23,10 @@ export default function ParagraphPhase({ content }: Props) {
 
       <View style={styles.section}>
         <Text style={styles.sectionLabel}>Supporting Sentences</Text>
-        {content.modelSentences.map((s, i) => (
+        {content.modelSentences.map((group, i) => (
           <View key={i} style={styles.sentenceRow}>
-            <Text style={styles.bullet}>{content.vocabularyCards[i]?.emoji ?? '•'}</Text>
-            <Text style={styles.sentenceText}>{s}</Text>
+            <Text style={styles.bullet}>{group.emoji}</Text>
+            <Text style={styles.sentenceText}>{group.sentences[0]}</Text>
           </View>
         ))}
       </View>

@@ -2,26 +2,23 @@ import ParagraphPhase from '@/components/ParagraphPhase';
 import PhrasePhase from '@/components/PhrasePhase';
 import SentencePhase from '@/components/SentencePhase';
 import VocabularyPhase from '@/components/VocabularyPhase';
-import { Colors, FontSizes, Spacing, BorderRadius } from '@/constants/theme';
-import { LevelData } from '@/data/types';
+import { Colors, FontSizes, Spacing } from '@/constants/theme';
+import { TOEFLQuestion } from '@/data/types';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
-  levelData: LevelData;
+  question: TOEFLQuestion;
   currentPhase: number;
   onPhaseChange: (phase: number) => void;
-  showParagraph: boolean;
 }
 
 const PHASES = ['Vocabulary', 'Phrases', 'Sentences', 'Paragraph'];
 
-export default function StudyPhase({ levelData, currentPhase, onPhaseChange, showParagraph }: Props) {
-  const phases = showParagraph ? PHASES : PHASES.slice(0, 3);
-
+export default function StudyPhase({ question, currentPhase, onPhaseChange }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.tabBar}>
-        {phases.map((label, i) => (
+        {PHASES.map((label, i) => (
           <Pressable
             key={i}
             style={[styles.tab, currentPhase === i && styles.activeTab]}
@@ -34,10 +31,10 @@ export default function StudyPhase({ levelData, currentPhase, onPhaseChange, sho
         ))}
       </View>
       <View style={styles.phaseContent}>
-        {currentPhase === 0 && <VocabularyPhase content={levelData.studyContent} />}
-        {currentPhase === 1 && <PhrasePhase content={levelData.studyContent} />}
-        {currentPhase === 2 && <SentencePhase content={levelData.studyContent} />}
-        {currentPhase === 3 && showParagraph && <ParagraphPhase content={levelData.studyContent} />}
+        {currentPhase === 0 && <VocabularyPhase content={question.studyContent} />}
+        {currentPhase === 1 && <PhrasePhase content={question.studyContent} />}
+        {currentPhase === 2 && <SentencePhase content={question.studyContent} />}
+        {currentPhase === 3 && <ParagraphPhase content={question.studyContent} />}
       </View>
     </View>
   );

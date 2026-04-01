@@ -1,7 +1,7 @@
 import { Colors, BorderRadius, Spacing, FontSizes } from '@/constants/theme';
-import { EmojiCard as EmojiCardType, VocabHint } from '@/data/types';
+import { EmojiCard as EmojiCardType } from '@/data/types';
 import { useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
   card: EmojiCardType;
@@ -14,6 +14,12 @@ const vocabColor: Record<string, string> = {
   intermediate: Colors.intermediate,
   advanced: Colors.advanced,
 };
+
+/** Stub: speak the word aloud using TTS. */
+function speak(text: string) {
+  // TODO: integrate expo-speech or react-native-tts
+  // Speech.speak(text, { language: 'en' });
+}
 
 export default function EmojiCard({ card, showVocab = false, opacity = 1 }: Props) {
   const [expanded, setExpanded] = useState(false);
@@ -28,12 +34,13 @@ export default function EmojiCard({ card, showVocab = false, opacity = 1 }: Prop
       {showVocab && expanded && (
         <View style={styles.vocabContainer}>
           {card.vocabHints.map((hint, i) => (
-            <View
+            <Pressable
               key={i}
+              onPress={() => speak(hint.word)}
               style={[styles.vocabChip, { backgroundColor: vocabColor[hint.level] + '20', borderColor: vocabColor[hint.level] }]}
             >
               <Text style={[styles.vocabText, { color: vocabColor[hint.level] }]}>{hint.word}</Text>
-            </View>
+            </Pressable>
           ))}
         </View>
       )}

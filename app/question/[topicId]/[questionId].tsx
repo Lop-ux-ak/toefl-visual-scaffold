@@ -1,5 +1,4 @@
 import PracticeMode from '@/components/PracticeMode';
-import ScaffoldFade from '@/components/ScaffoldFade';
 import StudyPhase from '@/components/StudyPhase';
 import { Colors, FontSizes, Spacing, BorderRadius } from '@/constants/theme';
 import { useProgress } from '@/context/ProgressContext';
@@ -11,44 +10,41 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Mode = 'study' | 'practice';
 
-export default function LevelScreen() {
-  const { topicId, level } = useLocalSearchParams<{ topicId: string; level: string }>();
+export default function QuestionScreen() {
+  const { topicId, questionId } = useLocalSearchParams<{ topicId: string; questionId: string }>();
   const router = useRouter();
   const navigation = useNavigation();
-  const { completeLevel, recordAttempt } = useProgress();
+  const { recordAttempt } = useProgress();
 
   const [mode, setMode] = useState<Mode>('study');
   const [studyPhase, setStudyPhase] = useState(0);
 
   const topic = TOPICS.find(t => t.id === topicId);
-  const levelNum = parseInt(level ?? '1', 10) as 1 | 2 | 3 | 4 | 5;
-  const levelData = topic?.levels.find(l => l.level === levelNum);
+  const question = topic?.questions.find(q => q.id === questionId);
 
   useEffect(() => {
-    if (levelData) {
-      navigation.setOptions({ title: `L${levelNum}: ${levelData.title}` });
+    if (question) {
+      navigation.setOptions({ title: topic?.title ?? 'Question' });
     }
-  }, [levelData]);
+  }, [question]);
 
-  if (!topic || !levelData) {
+  if (!topic || !question) {
     return (
       <View style={styles.center}>
-        <Text>Level not found.</Text>
+        <Text>Question not found.</Text>
       </View>
     );
   }
 
-  const showParagraph = levelNum >= 4;
-
   const handlePracticeComplete = (duration: number) => {
-    recordAttempt(topic.id, levelNum);
+    recordAttempt(topic.id, question.id);
     router.push({
       pathname: '/results',
       params: {
         topicId: topic.id,
-        level: String(levelNum),
+        questionId: question.id,
         duration: String(duration),
-        target: String(levelData.targetDuration),
+        target: String(question.targetDuration),
       },
     });
   };
@@ -79,17 +75,13 @@ export default function LevelScreen() {
       <View style={styles.content}>
         {mode === 'study' && (
           <StudyPhase
-            levelData={levelData}
+            question={question}
             currentPhase={studyPhase}
             onPhaseChange={setStudyPhase}
-            showParagraph={showParagraph}
           />
         )}
-        {mode === 'practice' && levelNum < 5 && (
-          <PracticeMode levelData={levelData} onComplete={handlePracticeComplete} />
-        )}
-        {mode === 'practice' && levelNum === 5 && (
-          <ScaffoldFade levelData={levelData} onComplete={handlePracticeComplete} />
+        {mode === 'practice' && (
+          <PracticeMode question={question} onComplete={handlePracticeComplete} />
         )}
       </View>
     </SafeAreaView>

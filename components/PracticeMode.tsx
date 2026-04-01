@@ -1,21 +1,23 @@
 import EmojiCard from '@/components/EmojiCard';
 import { Colors, FontSizes, Spacing, BorderRadius } from '@/constants/theme';
-import { LevelData } from '@/data/types';
+import { TOEFLQuestion } from '@/data/types';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
-  levelData: LevelData;
+  question: TOEFLQuestion;
   onComplete: (duration: number) => void;
 }
 
 type RecordingState = 'idle' | 'recording' | 'done';
 
-export default function PracticeMode({ levelData, onComplete }: Props) {
+export default function PracticeMode({ question, onComplete }: Props) {
   const [recordingState, setRecordingState] = useState<RecordingState>('idle');
   const [elapsed, setElapsed] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const pulseAnim = useRef(new Animated.Value(1)).current;
+
+  const target = question.targetDuration; // 45s
 
   useEffect(() => {
     if (recordingState === 'recording') {
@@ -57,24 +59,19 @@ export default function PracticeMode({ levelData, onComplete }: Props) {
     return `${min}:${sec.toString().padStart(2, '0')}`;
   };
 
-  const target = levelData.targetDuration;
   const progressRatio = Math.min(elapsed / target, 1);
-
-  const levelHints: Record<number, string> = {
-    1: 'Say the word each emoji represents',
-    2: 'Build a short phrase for each emoji',
-    3: 'Make one complete sentence using all emojis',
-    4: 'Make one sentence per emoji, then chain them',
-    5: 'Deliver your full 45-second TOEFL response',
-  };
 
   return (
     <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-      <Text style={styles.hint}>{levelHints[levelData.level]}</Text>
+      {/* TOEFL Question */}
+      <View style={styles.questionBox}>
+        <Text style={styles.questionLabel}>TOEFL Question</Text>
+        <Text style={styles.questionText}>{question.questionText}</Text>
+      </View>
 
       {/* Emoji prompt cards */}
       <View style={styles.emojiRow}>
-        {levelData.studyContent.vocabularyCards.map(card => (
+        {question.studyContent.vocabularyCards.map(card => (
           <EmojiCard key={card.id} card={card} showVocab={false} />
         ))}
       </View>
@@ -128,10 +125,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.lg,
   },
-  hint: {
-    fontSize: FontSizes.sm,
-    color: Colors.textSecondary,
-    textAlign: 'center',
+  questionBox: {
+    backgroundColor: Colors.secondary + '15',
+    borderRadius: BorderRadius.lg,
+    padding: Spacing.md,
+    width: '100%',
+    borderWidth: 1,
+    borderColor: Colors.secondary + '40',
+  },
+  questionLabel: {
+    fontSize: FontSizes.xs,
+    fontWeight: '700',
+    color: Colors.secondary,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginBottom: Spacing.xs,
+  },
+  questionText: {
+    fontSize: FontSizes.md,
+    color: Colors.textPrimary,
+    lineHeight: 22,
     fontStyle: 'italic',
   },
   emojiRow: {

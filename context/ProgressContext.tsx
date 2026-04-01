@@ -1,13 +1,13 @@
-import { AppProgress, TopicProgress } from '@/data/types';
+import { AppProgress, TopicProgress, QuestionProgress } from '@/data/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-const STORAGE_KEY = '@toefl_progress_v1';
+const STORAGE_KEY = '@toefl_progress_v2';
 
 interface ProgressContextValue {
   progress: AppProgress;
-  completeLevel: (topicId: string, level: number) => void;
-  recordAttempt: (topicId: string, level: number) => void;
+  completeQuestion: (topicId: string, questionId: string) => void;
+  recordAttempt: (topicId: string, questionId: string) => void;
   resetProgress: () => void;
 }
 
@@ -15,7 +15,7 @@ const defaultProgress: AppProgress = { topics: {} };
 
 export const ProgressContext = createContext<ProgressContextValue>({
   progress: defaultProgress,
-  completeLevel: () => {},
+  completeQuestion: () => {},
   recordAttempt: () => {},
   resetProgress: () => {},
 });
@@ -42,23 +42,23 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
 
   const ensureTopic = (p: AppProgress, topicId: string): AppProgress => {
     if (p.topics[topicId]) return p;
-    return { ...p, topics: { ...p.topics, [topicId]: { topicId, levels: {} } } };
+    return { ...p, topics: { ...p.topics, [topicId]: { topicId, questions: {} } } };
   };
 
-  const completeLevel = (topicId: string, level: number) => {
+  const completeQuestion = (topicId: string, questionId: string) => {
     setProgress(prev => {
       let next = ensureTopic(prev, topicId);
       const tp = next.topics[topicId];
-      const existing = tp.levels[level] ?? { completed: false, attempts: 0 };
+      const existing = tp.questions[questionId] ?? { completed: false, attempts: 0 };
       const updated: AppProgress = {
         ...next,
         topics: {
           ...next.topics,
           [topicId]: {
             ...tp,
-            levels: {
-              ...tp.levels,
-              [level]: { ...existing, completed: true, attempts: existing.attempts + 1 },
+            questions: {
+              ...tp.questions,
+              [questionId]: { ...existing, completed: true, attempts: existing.attempts + 1 },
             },
           },
         },
@@ -68,20 +68,20 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  const recordAttempt = (topicId: string, level: number) => {
+  const recordAttempt = (topicId: string, questionId: string) => {
     setProgress(prev => {
       let next = ensureTopic(prev, topicId);
       const tp = next.topics[topicId];
-      const existing = tp.levels[level] ?? { completed: false, attempts: 0 };
+      const existing = tp.questions[questionId] ?? { completed: false, attempts: 0 };
       const updated: AppProgress = {
         ...next,
         topics: {
           ...next.topics,
           [topicId]: {
             ...tp,
-            levels: {
-              ...tp.levels,
-              [level]: { ...existing, attempts: existing.attempts + 1 },
+            questions: {
+              ...tp.questions,
+              [questionId]: { ...existing, attempts: existing.attempts + 1 },
             },
           },
         },
@@ -98,7 +98,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <ProgressContext.Provider value={{ progress, completeLevel, recordAttempt, resetProgress }}>
+    <ProgressContext.Provider value={{ progress, completeQuestion, recordAttempt, resetProgress }}>
       {children}
     </ProgressContext.Provider>
   );

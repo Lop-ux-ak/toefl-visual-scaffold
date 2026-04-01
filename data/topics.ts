@@ -714,3 +714,287 @@ const friendsQuestions: TOEFLQuestion[] = [
     },
   },
 ];
+
+// ─── ENVIRONMENT & NATURE ────────────────────────────────────────────
+const environmentCards = makeCards([
+  { emoji: '🌳', scene: 'A tall tree in a green park', vocab: { basic: ['tree', 'park', 'green'], intermediate: ['nature', 'environment', 'ecosystem'], advanced: ['biodiversity', 'sustainable habitat', 'ecological balance'] } },
+  { emoji: '🏭', scene: 'A factory releasing smoke', vocab: { basic: ['factory', 'smoke', 'dirty'], intermediate: ['pollution', 'emission', 'industrial'], advanced: ['carbon footprint', 'environmental degradation', 'greenhouse gases'] } },
+  { emoji: '♻️', scene: 'A recycling symbol on a bin', vocab: { basic: ['recycle', 'trash', 'clean'], intermediate: ['waste reduction', 'reuse', 'conservation'], advanced: ['sustainable practice', 'circular economy', 'environmental stewardship'] } },
+  { emoji: '🌊', scene: 'Ocean waves on a beach', vocab: { basic: ['water', 'ocean', 'beach'], intermediate: ['marine life', 'coastal', 'tide'], advanced: ['marine ecosystem', 'oceanic preservation', 'aquatic biodiversity'] } },
+  { emoji: '☀️', scene: 'Bright sun and solar panels', vocab: { basic: ['sun', 'hot', 'light'], intermediate: ['solar energy', 'renewable', 'climate'], advanced: ['renewable energy source', 'climate mitigation', 'sustainable infrastructure'] } },
+]);
+
+const environmentQuestions: TOEFLQuestion[] = [
+  {
+    id: 'environment-q1',
+    questionText: 'Thank you for joining me. I\'d like to discuss the environment with you. What do you think is the biggest environmental problem in your area? For example, air pollution, water pollution, or deforestation?',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: environmentCards,
+      phraseFrames: [
+        { emoji: '🏭', template: 'The biggest environmental problem in my area is _____', sentences: ['The biggest environmental problem in my area is air pollution from factories.', 'The biggest environmental problem in my area is plastic waste in rivers.', 'The biggest environmental problem in my area is deforestation for construction.'] },
+        { emoji: '🌳', template: 'This problem affects _____ because _____', sentences: ['This problem affects our health because the air quality is very poor.', 'This problem affects wildlife because their habitat is being destroyed.', 'This problem affects our water supply because rivers are contaminated.'] },
+        { emoji: '♻️', template: 'One way to help is _____', sentences: ['One way to help is to reduce our use of plastic bags.', 'One way to help is to plant more trees in urban areas.', 'One way to help is to use public transportation more often.'] },
+        { emoji: '☀️', template: 'If we don\'t act now, _____', sentences: ['If we don\'t act now, the pollution will get much worse.', 'If we don\'t act now, many species could disappear.', 'If we don\'t act now, future generations will suffer the consequences.'] },
+      ],
+      modelSentences: [
+        { emoji: '🌳', scene: 'A tall tree in a green park', sentences: ['Our city used to have many beautiful parks with tall trees.', 'Unfortunately, many green areas have been replaced by buildings.', 'Protecting our remaining natural spaces is extremely important.'] },
+        { emoji: '🏭', scene: 'A factory releasing smoke', sentences: ['Several factories near my city release harmful smoke every day.', 'Air pollution has become a serious health concern for local residents.', 'Stricter regulations on factory emissions are urgently needed.'] },
+        { emoji: '♻️', scene: 'A recycling symbol on a bin', sentences: ['Recycling programs in my area have made a positive difference.', 'More people are separating their trash and reusing materials.', 'Small actions like recycling add up to significant environmental impact.'] },
+        { emoji: '🌊', scene: 'Ocean waves on a beach', sentences: ['Our local beaches have suffered from plastic pollution.', 'Community cleanup events have helped restore some coastal areas.', 'Protecting our oceans is essential for the health of the planet.'] },
+        { emoji: '☀️', scene: 'Bright sun and solar panels', sentences: ['Solar panels are becoming more common on rooftops in my neighborhood.', 'Switching to renewable energy can reduce pollution significantly.', 'I believe clean energy is the key to a healthier environment.'] },
+      ],
+      transitionWords: ['In my opinion', 'The main issue', 'As a result', 'For example', 'To sum up'],
+      openingStatement: 'I believe air pollution from factories is the most serious environmental problem in my area.',
+      closingStatement: 'By taking both individual and collective action, we can significantly improve the environmental situation in our community.',
+      fullModelResponse: 'I believe air pollution from factories is the most serious environmental problem in my area. In my opinion, this issue has gotten worse over the past few years as more industrial facilities have been built nearby. The main issue is that these factories release harmful gases into the air, which affects the health of everyone in the community. As a result, many people suffer from respiratory problems, and the sky is often hazy. For example, my grandmother developed breathing difficulties that her doctor linked to poor air quality. However, there are some positive changes happening — more solar panels are appearing on buildings, and recycling programs are growing. To sum up, while air pollution remains our biggest challenge, I am hopeful that increased awareness and cleaner energy solutions will help improve the situation.',
+    },
+  },
+  {
+    id: 'environment-q2',
+    questionText: 'I see. Do you think individuals or governments are more responsible for protecting the environment? Why?',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: environmentCards,
+      phraseFrames: [
+        { emoji: '🏛️', template: 'Governments should _____ because _____', sentences: ['Governments should pass stricter laws because companies won\'t change voluntarily.', 'Governments should invest in clean energy because it requires large-scale funding.', 'Governments should educate the public because awareness drives change.'] },
+        { emoji: '🧑', template: 'Individuals can make a difference by _____', sentences: ['Individuals can make a difference by reducing their energy consumption.', 'Individuals can make a difference by choosing eco-friendly products.', 'Individuals can make a difference by spreading environmental awareness.'] },
+        { emoji: '🤝', template: 'Both sides need to _____ because _____', sentences: ['Both sides need to cooperate because environmental problems are too big for one group alone.', 'Both sides need to take responsibility because the planet belongs to everyone.', 'Both sides need to act quickly because climate change is accelerating.'] },
+        { emoji: '⚖️', template: 'The most effective approach is _____', sentences: ['The most effective approach is combining government policy with individual action.', 'The most effective approach is holding corporations accountable through regulations.', 'The most effective approach is creating incentives for sustainable behavior.'] },
+      ],
+      modelSentences: [
+        { emoji: '🌳', scene: 'A tall tree in a green park', sentences: ['I plant trees in my neighborhood whenever I can.', 'Individual efforts like gardening contribute to a greener environment.', 'Small personal actions create a culture of environmental care.'] },
+        { emoji: '🏭', scene: 'A factory releasing smoke', sentences: ['Only governments have the power to regulate factory emissions.', 'Without legal enforcement, many companies will continue polluting.', 'Government regulations have successfully reduced pollution in many countries.'] },
+        { emoji: '♻️', scene: 'A recycling symbol on a bin', sentences: ['I recycle every day, but government infrastructure makes it possible.', 'Recycling programs require both citizen participation and government funding.', 'This is a perfect example of individual and government cooperation.'] },
+        { emoji: '🌊', scene: 'Ocean waves on a beach', sentences: ['Government bans on single-use plastics have reduced ocean pollution.', 'Individuals choosing reusable bags and bottles also helps significantly.', 'Cleaning up our oceans requires effort from everyone in society.'] },
+        { emoji: '☀️', scene: 'Bright sun and solar panels', sentences: ['Government subsidies make solar panels affordable for families.', 'Individuals choosing solar energy drive demand for clean technology.', 'The transition to renewable energy needs both policy support and personal commitment.'] },
+      ],
+      transitionWords: ['I believe', 'On one hand', 'On the other hand', 'That said', 'Ultimately'],
+      openingStatement: 'I believe both individuals and governments share responsibility, but governments have a greater role to play.',
+      closingStatement: 'Real environmental progress requires government leadership supported by responsible individual choices.',
+      fullModelResponse: 'I believe both individuals and governments share responsibility, but governments have a greater role to play. On one hand, individuals can contribute by recycling, conserving energy, and making eco-friendly choices in their daily lives. These small actions do add up and create a culture of environmental awareness. On the other hand, governments have the power to create and enforce laws that regulate pollution, fund renewable energy projects, and hold corporations accountable. That said, even the best government policies will fail without public support and participation. For example, recycling programs need both government investment in infrastructure and individual willingness to sort waste properly. Ultimately, protecting the environment is a shared responsibility, but I think governments must lead by setting ambitious policies and creating the conditions that make sustainable living easier for everyone.',
+    },
+  },
+  {
+    id: 'environment-q3',
+    questionText: 'Interesting. Some universities now require all students to take an environmental science course. Do you think this is a good idea? Why or why not?',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: environmentCards,
+      phraseFrames: [
+        { emoji: '📚', template: 'Requiring environmental courses is good because _____', sentences: ['Requiring environmental courses is good because every student should understand these issues.', 'Requiring environmental courses is good because it creates more informed citizens.', 'Requiring environmental courses is good because the environment affects all career fields.'] },
+        { emoji: '🤔', template: 'Some might argue against it because _____', sentences: ['Some might argue against it because students should choose their own courses.', 'Some might argue against it because it takes time from major-specific studies.', 'Some might argue against it because not everyone is interested in science.'] },
+        { emoji: '🌍', template: 'Understanding the environment helps students _____', sentences: ['Understanding the environment helps students make better decisions as consumers.', 'Understanding the environment helps students become responsible community members.', 'Understanding the environment helps students in many unexpected career paths.'] },
+        { emoji: '💡', template: 'A better approach might be _____', sentences: ['A better approach might be integrating environmental topics into existing courses.', 'A better approach might be offering engaging workshops instead of formal classes.', 'A better approach might be making it a required course only in the first year.'] },
+      ],
+      modelSentences: [
+        { emoji: '🌳', scene: 'A tall tree in a green park', sentences: ['Learning about ecosystems helped me appreciate the nature around me.', 'Environmental education changes how people interact with natural spaces.', 'Students who learn about nature are more likely to protect it.'] },
+        { emoji: '🏭', scene: 'A factory releasing smoke', sentences: ['Understanding pollution sources helps students make informed career choices.', 'Environmental courses teach critical thinking about industrial practices.', 'Future business leaders need to understand their environmental impact.'] },
+        { emoji: '♻️', scene: 'A recycling symbol on a bin', sentences: ['Environmental courses teach practical skills like waste reduction.', 'Students learn actionable habits they can apply immediately.', 'Education is the foundation of lasting environmental change.'] },
+        { emoji: '🌊', scene: 'Ocean waves on a beach', sentences: ['Many students don\'t realize how their choices affect oceans and rivers.', 'Environmental science reveals the hidden connections in our world.', 'This knowledge is relevant regardless of your major or career.'] },
+        { emoji: '☀️', scene: 'Bright sun and solar panels', sentences: ['Clean energy topics inspire innovation and entrepreneurship among students.', 'Environmental courses can spark interest in sustainable technology careers.', 'Understanding energy systems is valuable knowledge for any educated person.'] },
+      ],
+      transitionWords: ['I strongly support', 'First of all', 'Additionally', 'While some disagree', 'In conclusion'],
+      openingStatement: 'I think requiring an environmental science course for all university students is an excellent idea.',
+      closingStatement: 'Environmental literacy is too important to be optional — it should be a fundamental part of every student\'s education.',
+      fullModelResponse: 'I think requiring an environmental science course for all university students is an excellent idea. I strongly support this because environmental issues affect everyone, regardless of their major or career plans. First of all, understanding topics like pollution, climate change, and sustainability helps students become more responsible citizens who make better daily choices. Additionally, many industries now require environmental awareness — from business and engineering to healthcare and education. While some disagree, arguing that students should have complete freedom in course selection, I believe environmental literacy is as fundamental as writing or mathematics. The environmental challenges we face are so urgent that we cannot afford to have graduates who are uninformed about these issues. In conclusion, a required environmental course would create a generation of knowledgeable, responsible citizens prepared to address one of the greatest challenges of our time.',
+    },
+  },
+  {
+    id: 'environment-q4',
+    questionText: 'Good points. Last question. Do you think technology will solve most environmental problems in the future, or do we need to change our lifestyles? Explain your reasoning.',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: environmentCards,
+      phraseFrames: [
+        { emoji: '🔬', template: 'Technology can help by _____', sentences: ['Technology can help by creating cleaner energy sources.', 'Technology can help by making recycling more efficient.', 'Technology can help by monitoring pollution levels in real time.'] },
+        { emoji: '🚶', template: 'Changing our lifestyle means _____', sentences: ['Changing our lifestyle means consuming less and wasting less.', 'Changing our lifestyle means choosing public transport over private cars.', 'Changing our lifestyle means being more mindful of our environmental footprint.'] },
+        { emoji: '⚖️', template: 'We need both because _____', sentences: ['We need both because technology alone cannot change human behavior.', 'We need both because lifestyle changes without technology are insufficient.', 'We need both because the problem is too complex for a single solution.'] },
+        { emoji: '🔮', template: 'In the future, I think _____', sentences: ['In the future, I think we will rely on a combination of innovation and simpler living.', 'In the future, I think technology will make sustainable living much easier.', 'In the future, I think people will naturally adopt greener habits.'] },
+      ],
+      modelSentences: [
+        { emoji: '🌳', scene: 'A tall tree in a green park', sentences: ['No technology can replace the value of preserving natural forests.', 'We need to protect existing nature while developing new solutions.', 'Lifestyle choices like reducing paper use directly protect trees.'] },
+        { emoji: '🏭', scene: 'A factory releasing smoke', sentences: ['Cleaner technology can dramatically reduce factory emissions.', 'However, reducing overconsumption is equally important.', 'Technology and lifestyle changes must work together against pollution.'] },
+        { emoji: '♻️', scene: 'A recycling symbol on a bin', sentences: ['Advanced recycling technology can recover materials more efficiently.', 'But choosing to buy less in the first place is even more effective.', 'The best approach combines smarter technology with conscious consumption.'] },
+        { emoji: '🌊', scene: 'Ocean waves on a beach', sentences: ['Ocean cleanup technology shows promise but cannot keep up with new pollution.', 'Reducing plastic use at the source is essential.', 'Saving our oceans requires both innovation and personal responsibility.'] },
+        { emoji: '☀️', scene: 'Bright sun and solar panels', sentences: ['Solar and wind technology can replace fossil fuels over time.', 'But we also need to reduce our overall energy consumption.', 'A sustainable future depends on both cleaner energy and simpler living.'] },
+      ],
+      transitionWords: ['I think', 'Certainly', 'However', 'At the same time', 'All things considered'],
+      openingStatement: 'I believe we need both technological innovation and lifestyle changes to solve environmental problems.',
+      closingStatement: 'The most realistic path forward combines the power of technology with a willingness to live more sustainably.',
+      fullModelResponse: 'I believe we need both technological innovation and lifestyle changes to solve environmental problems. Certainly, technology offers incredible solutions — solar panels, electric vehicles, and advanced recycling systems are already making a difference. However, technology alone is not enough if we continue to overconsume and waste resources. At the same time, even dramatic lifestyle changes cannot fully solve problems like industrial pollution without technological alternatives. I think the key is finding the right balance. For example, we can use technology to create clean energy while also choosing to reduce unnecessary consumption. We can develop better recycling systems while also buying fewer disposable products. All things considered, I am optimistic about the future, but only if we pursue both paths simultaneously — investing in green technology while also embracing simpler, more sustainable ways of living.',
+    },
+  },
+];
+
+// ─── SCHOOL & EDUCATION ──────────────────────────────────────────────
+const schoolCards = makeCards([
+  { emoji: '🏫', scene: 'A school building with students', vocab: { basic: ['school', 'class', 'teacher'], intermediate: ['education', 'curriculum', 'instruction'], advanced: ['academic institution', 'pedagogical approach', 'educational framework'] } },
+  { emoji: '📖', scene: 'An open textbook on a desk', vocab: { basic: ['book', 'read', 'study'], intermediate: ['textbook', 'knowledge', 'academic'], advanced: ['scholarly resource', 'intellectual development', 'educational material'] } },
+  { emoji: '👩‍🏫', scene: 'A teacher explaining at a whiteboard', vocab: { basic: ['teacher', 'learn', 'help'], intermediate: ['instructor', 'mentor', 'guidance'], advanced: ['pedagogical expertise', 'academic mentorship', 'instructional leadership'] } },
+  { emoji: '🎓', scene: 'A graduation cap and diploma', vocab: { basic: ['graduate', 'finish', 'proud'], intermediate: ['achievement', 'degree', 'milestone'], advanced: ['academic accomplishment', 'commencement', 'scholarly distinction'] } },
+  { emoji: '💻', scene: 'A laptop used for online learning', vocab: { basic: ['computer', 'internet', 'online'], intermediate: ['e-learning', 'digital classroom', 'virtual'], advanced: ['distance education', 'digital literacy', 'technology-enhanced learning'] } },
+]);
+
+const schoolQuestions: TOEFLQuestion[] = [
+  {
+    id: 'school-q1',
+    questionText: 'Thank you for being here. Let\'s talk about education. What is your favorite subject in school, and why do you enjoy it?',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: schoolCards,
+      phraseFrames: [
+        { emoji: '⭐', template: 'My favorite subject is _____ because _____', sentences: ['My favorite subject is history because I love learning about the past.', 'My favorite subject is science because experiments are exciting.', 'My favorite subject is English because it helps me communicate globally.'] },
+        { emoji: '👩‍🏫', template: 'My teacher makes it interesting by _____', sentences: ['My teacher makes it interesting by using real-world examples.', 'My teacher makes it interesting by encouraging class discussions.', 'My teacher makes it interesting by connecting lessons to current events.'] },
+        { emoji: '📖', template: 'I have learned _____ from studying this subject', sentences: ['I have learned critical thinking skills from studying this subject.', 'I have learned to appreciate different perspectives from studying this subject.', 'I have learned practical problem-solving from studying this subject.'] },
+        { emoji: '🎯', template: 'This subject is useful for my future because _____', sentences: ['This subject is useful for my future because it develops analytical skills.', 'This subject is useful for my future because it relates to my dream career.', 'This subject is useful for my future because it teaches me how to think clearly.'] },
+      ],
+      modelSentences: [
+        { emoji: '🏫', scene: 'A school building with students', sentences: ['I look forward to going to school especially on days with my favorite class.', 'The classroom environment makes learning this subject enjoyable.', 'My school offers excellent resources for this subject area.'] },
+        { emoji: '📖', scene: 'An open textbook on a desk', sentences: ['Reading the textbook for this class never feels boring to me.', 'I often read extra chapters because the content is so fascinating.', 'The study materials are well-designed and easy to understand.'] },
+        { emoji: '👩‍🏫', scene: 'A teacher explaining at a whiteboard', sentences: ['My teacher\'s passion for the subject is truly inspiring.', 'She always finds creative ways to explain difficult concepts.', 'A great teacher can make any subject come alive.'] },
+        { emoji: '🎓', scene: 'A graduation cap and diploma', sentences: ['This subject has prepared me well for my future studies.', 'The skills I learn here will benefit me long after graduation.', 'I hope to continue studying this field at university.'] },
+        { emoji: '💻', scene: 'A laptop used for online learning', sentences: ['Online resources have helped me explore this subject even deeper.', 'I watch educational videos to supplement what I learn in class.', 'Technology has made studying this subject more interactive and engaging.'] },
+      ],
+      transitionWords: ['To begin with', 'The reason is', 'What I enjoy most', 'Furthermore', 'In short'],
+      openingStatement: 'My favorite subject in school is history because it fascinates me to learn how past events have shaped our world.',
+      closingStatement: 'History has taught me to think critically and appreciate the complexity of human experience.',
+      fullModelResponse: 'My favorite subject in school is history because it fascinates me to learn how past events have shaped our world. To begin with, I have always been curious about why things are the way they are, and history provides those answers. The reason is that every historical event connects to something happening today, which makes the subject feel relevant and alive. What I enjoy most is when my teacher uses stories and primary sources to bring historical figures to life — it feels like time travel. Furthermore, studying history has improved my critical thinking and writing skills because I have to analyze evidence and form arguments. I also use online documentaries and articles to explore topics beyond what we cover in class. In short, history is my favorite subject because it satisfies my curiosity, develops important skills, and helps me understand the world around me.',
+    },
+  },
+  {
+    id: 'school-q2',
+    questionText: 'Good. Do you prefer learning in a traditional classroom or through online classes? Why?',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: schoolCards,
+      phraseFrames: [
+        { emoji: '🏫', template: 'Traditional classrooms are better because _____', sentences: ['Traditional classrooms are better because you can interact with classmates directly.', 'Traditional classrooms are better because the teacher can give immediate feedback.', 'Traditional classrooms are better because there are fewer distractions.'] },
+        { emoji: '💻', template: 'Online learning is convenient because _____', sentences: ['Online learning is convenient because you can study from anywhere.', 'Online learning is convenient because you can replay recorded lectures.', 'Online learning is convenient because you can learn at your own pace.'] },
+        { emoji: '🤔', template: 'The main challenge with _____ is _____', sentences: ['The main challenge with online learning is staying motivated.', 'The main challenge with traditional classes is the fixed schedule.', 'The main challenge with both formats is maintaining focus.'] },
+        { emoji: '👍', template: 'I prefer _____ because it helps me _____', sentences: ['I prefer classroom learning because it helps me stay disciplined.', 'I prefer online learning because it helps me manage my time better.', 'I prefer a mix because it helps me get the best of both approaches.'] },
+      ],
+      modelSentences: [
+        { emoji: '🏫', scene: 'A school building with students', sentences: ['Being physically present in school keeps me focused and engaged.', 'The social aspect of school is just as important as the academic side.', 'I learn best when I can raise my hand and ask questions immediately.'] },
+        { emoji: '📖', scene: 'An open textbook on a desk', sentences: ['In a classroom, I can study with friends and share notes easily.', 'Group study sessions after class have been very helpful for me.', 'Physical textbooks and materials feel more natural for my learning style.'] },
+        { emoji: '👩‍🏫', scene: 'A teacher explaining at a whiteboard', sentences: ['Face-to-face instruction is more personal and engaging for me.', 'Teachers can read our expressions and adjust their teaching accordingly.', 'The bond between teacher and student is stronger in person.'] },
+        { emoji: '🎓', scene: 'A graduation cap and diploma', sentences: ['Traditional education provides a structured path toward graduation.', 'The discipline of attending classes in person prepares you for work.', 'Classroom habits build skills that are valuable throughout your career.'] },
+        { emoji: '💻', scene: 'A laptop used for online learning', sentences: ['I appreciate having online resources available alongside my classes.', 'Recorded lectures are helpful when I need to review difficult material.', 'The ideal format combines in-person teaching with digital tools.'] },
+      ],
+      transitionWords: ['Personally', 'The main reason', 'In addition', 'Although', 'All in all'],
+      openingStatement: 'I prefer learning in a traditional classroom, although I appreciate some benefits of online education.',
+      closingStatement: 'For me, the personal interaction and structure of a physical classroom create the best learning environment.',
+      fullModelResponse: 'I prefer learning in a traditional classroom, although I appreciate some benefits of online education. Personally, I find that being physically present in a classroom helps me stay focused and engaged with the material. The main reason is that I can interact directly with my teacher and classmates, which makes learning more dynamic and social. In addition, the structured schedule of attending classes in person helps me stay disciplined and organized. Although online learning offers great flexibility — like being able to replay lectures or study at your own pace — I find it harder to stay motivated when learning from home with so many distractions. All in all, while I think online tools are excellent supplements to traditional education, I believe the in-person classroom experience is more effective for deep learning and personal growth.',
+    },
+  },
+  {
+    id: 'school-q3',
+    questionText: 'Interesting. Now I\'d like to hear your opinion. Some people think students should specialize in one subject early, while others believe a broad education is better. Which view do you support?',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: schoolCards,
+      phraseFrames: [
+        { emoji: '🎯', template: 'Specializing early is good because _____', sentences: ['Specializing early is good because students can develop deep expertise.', 'Specializing early is good because it prepares students for specific careers.', 'Specializing early is good because it allows students to discover their passion sooner.'] },
+        { emoji: '🌐', template: 'A broad education is valuable because _____', sentences: ['A broad education is valuable because it develops well-rounded thinkers.', 'A broad education is valuable because students discover unexpected interests.', 'A broad education is valuable because many jobs require diverse skills.'] },
+        { emoji: '📊', template: 'The risk of specializing too early is _____', sentences: ['The risk of specializing too early is that students may miss other talents.', 'The risk of specializing too early is that career interests may change.', 'The risk of specializing too early is a narrow worldview.'] },
+        { emoji: '💡', template: 'The ideal approach would be _____', sentences: ['The ideal approach would be a broad foundation followed by gradual specialization.', 'The ideal approach would be letting students explore before choosing a focus.', 'The ideal approach would be combining core subjects with elective depth.'] },
+      ],
+      modelSentences: [
+        { emoji: '🏫', scene: 'A school building with students', sentences: ['My school offers both required courses and electives, which I think works well.', 'Having exposure to many subjects helped me discover my true interests.', 'A good school gives students room to explore before specializing.'] },
+        { emoji: '📖', scene: 'An open textbook on a desk', sentences: ['Reading widely across subjects has given me a broader perspective.', 'Knowledge from different fields often connects in surprising ways.', 'I use skills from multiple subjects in my daily life.'] },
+        { emoji: '👩‍🏫', scene: 'A teacher explaining at a whiteboard', sentences: ['My teachers encourage us to be curious about all subjects.', 'The best teachers show how different disciplines connect to each other.', 'A broad education helps students appreciate every teacher\'s expertise.'] },
+        { emoji: '🎓', scene: 'A graduation cap and diploma', sentences: ['Universities increasingly value students with diverse knowledge.', 'Graduates who can think across disciplines are highly sought after.', 'A broad education prepares students for a rapidly changing job market.'] },
+        { emoji: '💻', scene: 'A laptop used for online learning', sentences: ['Technology careers increasingly require knowledge from many fields.', 'Online learning makes it easy to explore subjects outside your specialty.', 'Digital tools help students combine interests from different areas.'] },
+      ],
+      transitionWords: ['I support', 'To start', 'Moreover', 'Critics may say', 'Therefore'],
+      openingStatement: 'I believe a broad education is more beneficial than early specialization for most students.',
+      closingStatement: 'A broad educational foundation gives students the flexibility and knowledge they need to succeed in an unpredictable future.',
+      fullModelResponse: 'I believe a broad education is more beneficial than early specialization for most students. I support this view because young people are still discovering their interests and abilities, and narrowing their focus too soon could cause them to miss their true calling. To start, a broad education develops critical thinking, creativity, and communication skills that are valuable in any career. Moreover, the modern job market changes rapidly, and workers who can adapt and draw on diverse knowledge have a significant advantage. Critics may say that specialization leads to deeper expertise, which is true, but I think that depth should come after students have explored enough to make an informed choice. Many successful people changed their career direction after being exposed to unexpected subjects. Therefore, I believe schools should provide a strong general foundation first, then gradually allow students to specialize based on genuine interest and informed decision-making.',
+    },
+  },
+  {
+    id: 'school-q4',
+    questionText: 'Great thoughts. Final question. Do you think homework is necessary for learning, or should students have more free time after school? Give reasons for your answer.',
+    targetDuration: 45,
+    studyContent: {
+      vocabularyCards: schoolCards,
+      phraseFrames: [
+        { emoji: '📝', template: 'Homework is important because _____', sentences: ['Homework is important because it reinforces what was taught in class.', 'Homework is important because it builds independent study habits.', 'Homework is important because it helps teachers assess understanding.'] },
+        { emoji: '⚽', template: 'Free time after school is valuable because _____', sentences: ['Free time after school is valuable because students need rest and recreation.', 'Free time after school is valuable because it allows for creative exploration.', 'Free time after school is valuable because it reduces stress and prevents burnout.'] },
+        { emoji: '⚖️', template: 'The right balance is _____', sentences: ['The right balance is a small amount of meaningful homework each day.', 'The right balance is homework that is purposeful, not just busywork.', 'The right balance is leaving enough time for hobbies and relaxation.'] },
+        { emoji: '🧠', template: 'Students learn best when _____', sentences: ['Students learn best when they have time to process information.', 'Students learn best when homework is engaging and relevant.', 'Students learn best when they are not overwhelmed by assignments.'] },
+      ],
+      modelSentences: [
+        { emoji: '🏫', scene: 'A school building with students', sentences: ['My school assigns a moderate amount of homework each night.', 'Some assignments are very helpful, while others feel like busywork.', 'The best homework connects directly to what we learned that day.'] },
+        { emoji: '📖', scene: 'An open textbook on a desk', sentences: ['Reviewing my textbook at home helps me remember key concepts.', 'Practice problems are the most useful type of homework for me.', 'I retain information better when I study it again after class.'] },
+        { emoji: '👩‍🏫', scene: 'A teacher explaining at a whiteboard', sentences: ['Good teachers assign homework that genuinely supports learning.', 'Some teachers give too much homework without considering students\' well-being.', 'The most effective homework is purposeful and takes a reasonable amount of time.'] },
+        { emoji: '🎓', scene: 'A graduation cap and diploma', sentences: ['Developing good study habits now will help me succeed in university.', 'Learning to manage homework teaches important time management skills.', 'However, burnout from excessive homework can harm long-term academic motivation.'] },
+        { emoji: '💻', scene: 'A laptop used for online learning', sentences: ['Online homework platforms can make assignments more interactive.', 'Technology allows for personalized homework that targets individual weaknesses.', 'Digital tools can make homework more efficient and less time-consuming.'] },
+      ],
+      transitionWords: ['I believe', 'On one hand', 'On the other hand', 'The key point is', 'To conclude'],
+      openingStatement: 'I believe homework is necessary but should be limited to allow students adequate free time.',
+      closingStatement: 'The goal should be quality over quantity — meaningful homework that supports learning without overwhelming students.',
+      fullModelResponse: 'I believe homework is necessary but should be limited to allow students adequate free time. On one hand, homework helps reinforce what we learn in class and builds important study habits. For example, practicing math problems at home helps me truly understand the concepts rather than just memorizing them during the lesson. On the other hand, too much homework leaves students exhausted, stressed, and without time for physical activities, hobbies, or socializing — all of which are essential for healthy development. The key point is that homework should be meaningful and purposeful, not just given to fill time. A short, focused review of the day\'s lesson is far more effective than hours of repetitive exercises. Teachers should consider the total workload across all subjects before assigning additional work. To conclude, I support a balanced approach where moderate, high-quality homework complements sufficient free time for students to rest, play, and pursue their own interests.',
+    },
+  },
+];
+
+// ─── TOPICS EXPORT ───────────────────────────────────────────────────
+export const TOPICS: Topic[] = [
+  {
+    id: 'exercise',
+    title: 'Exercise & Health',
+    emojis: '🏃‍♀️⏰🌅💪🥤',
+    color: '#4CAF50',
+    questions: exerciseQuestions,
+  },
+  {
+    id: 'reading',
+    title: 'Reading & Learning',
+    emojis: '📚🔍🧠✍️🌙',
+    color: '#2196F3',
+    questions: readingQuestions,
+  },
+  {
+    id: 'technology',
+    title: 'Technology & Social Media',
+    emojis: '📱💻🤖🔔🌐',
+    color: '#9C27B0',
+    questions: technologyQuestions,
+  },
+  {
+    id: 'food',
+    title: 'Food & Cooking',
+    emojis: '🍳🥗🏪👨‍🍳🍽️',
+    color: '#FF9800',
+    questions: foodQuestions,
+  },
+  {
+    id: 'travel',
+    title: 'Travel & Adventure',
+    emojis: '✈️🗺️📸🏨🌍',
+    color: '#00BCD4',
+    questions: travelQuestions,
+  },
+  {
+    id: 'friends',
+    title: 'Friends & Social Life',
+    emojis: '👫🎉🎮💬🏠',
+    color: '#E91E63',
+    questions: friendsQuestions,
+  },
+  {
+    id: 'environment',
+    title: 'Environment & Nature',
+    emojis: '🌳🏭♻️🌊☀️',
+    color: '#388E3C',
+    questions: environmentQuestions,
+  },
+  {
+    id: 'school',
+    title: 'School & Education',
+    emojis: '🏫📖👩‍🏫🎓💻',
+    color: '#5C6BC0',
+    questions: schoolQuestions,
+  },
+];
