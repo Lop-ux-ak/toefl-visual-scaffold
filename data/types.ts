@@ -13,27 +13,32 @@ export interface EmojiCard {
 }
 
 export interface PhraseFrame {
-  template: string; // e.g. "I usually _____ in the _____"
-  example: string;
+  emoji: string;              // visual representation for the phrase
+  template: string;           // e.g. "I usually _____ in the _____"
+  sentences: string[];        // multiple example sentences
+}
+
+export interface ModelSentenceGroup {
+  emoji: string;
+  scene: string;
+  sentences: string[];        // 3+ model sentences per emoji
 }
 
 export interface StudyContent {
   vocabularyCards: EmojiCard[];
   phraseFrames: PhraseFrame[];
-  modelSentences: string[];       // one per card for level 1-3
+  modelSentences: ModelSentenceGroup[];
   transitionWords: string[];
   openingStatement: string;
   closingStatement: string;
   fullModelResponse: string;      // ~120 words / 45 seconds
 }
 
-export interface LevelData {
-  level: 1 | 2 | 3 | 4 | 5;
-  title: string;
-  description: string;
-  targetDuration: number;         // seconds
+export interface TOEFLQuestion {
+  id: string;
+  questionText: string;
   studyContent: StudyContent;
-  tofelQuestion?: string;         // Level 5 only
+  targetDuration: number;         // 45 seconds
 }
 
 export interface Topic {
@@ -41,10 +46,10 @@ export interface Topic {
   title: string;
   emojis: string;                 // display string e.g. "🏃‍♀️⏰🌅💪🥤"
   color: string;                  // theme color hex
-  levels: LevelData[];
+  questions: TOEFLQuestion[];     // 4 questions per topic
 }
 
-export interface LevelProgress {
+export interface QuestionProgress {
   completed: boolean;
   attempts: number;
   bestScore?: number;
@@ -52,7 +57,7 @@ export interface LevelProgress {
 
 export interface TopicProgress {
   topicId: string;
-  levels: Record<number, LevelProgress>;
+  questions: Record<string, QuestionProgress>;
 }
 
 export interface AppProgress {
