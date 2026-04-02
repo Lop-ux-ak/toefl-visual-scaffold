@@ -98,58 +98,6 @@ const barStyles = StyleSheet.create({
   },
 });
 
-// Placeholder step views — replaced in Parts 3, 4, 5, 6
-function StepPlaceholder({ flowState, unit }: { flowState: FlowState; unit: { emoji: string; scene: string } }) {
-  return (
-    <ScrollView contentContainerStyle={placeholder.container}>
-      <Text style={placeholder.emoji}>{unit.emoji}</Text>
-      <Text style={placeholder.scene}>{unit.scene}</Text>
-      <Text style={placeholder.stepLabel}>{STEP_LABELS[flowState.step]} step</Text>
-      <Text style={placeholder.note}>(Part 5 will fill this in)</Text>
-    </ScrollView>
-  );
-}
-
-function ParagraphPlaceholder({ question }: { question: TOEFLQuestion }) {
-  return (
-    <ScrollView contentContainerStyle={placeholder.container}>
-      <Text style={placeholder.emoji}>📝</Text>
-      <Text style={placeholder.stepLabel}>Full Response Assembly</Text>
-      <Text style={placeholder.note}>(Part 6 will fill this in)</Text>
-    </ScrollView>
-  );
-}
-
-const placeholder = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: Spacing.lg,
-    gap: Spacing.md,
-  },
-  emoji: {
-    fontSize: FontSizes.emoji * 1.5,
-    textAlign: 'center',
-  },
-  scene: {
-    fontSize: FontSizes.md,
-    color: Colors.textSecondary,
-    textAlign: 'center',
-  },
-  stepLabel: {
-    fontSize: FontSizes.lg,
-    fontWeight: '700',
-    color: Colors.textPrimary,
-    textAlign: 'center',
-  },
-  note: {
-    fontSize: FontSizes.sm,
-    color: Colors.textLight,
-    textAlign: 'center',
-  },
-});
-
 export default function EmojiStudyFlow({ question, flowState, onAdvance, onGoToPractice }: Props) {
   const { emojiUnits } = question.studyContent;
   const currentUnit = emojiUnits[flowState.emojiIndex];
@@ -164,9 +112,13 @@ export default function EmojiStudyFlow({ question, flowState, onAdvance, onGoToP
         ) : flowState.step === 'phrase' && currentUnit ? (
           <PhraseStep unit={currentUnit} onNext={onAdvance} />
         ) : flowState.step === 'sentence' && currentUnit ? (
-          <StepPlaceholder flowState={flowState} unit={currentUnit} />
+          <SentenceStep
+            unit={currentUnit}
+            isLastEmoji={flowState.emojiIndex === emojiUnits.length - 1}
+            onNext={onAdvance}
+          />
         ) : (
-          <ParagraphPlaceholder question={question} />
+          <ParagraphStep studyContent={question.studyContent} onGoToPractice={onGoToPractice} />
         )}
       </View>
     </View>
