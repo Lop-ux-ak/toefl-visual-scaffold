@@ -1,5 +1,5 @@
+import EmojiStudyFlow, { initialFlowState, advanceFlowState } from '@/components/EmojiStudyFlow';
 import PracticeMode from '@/components/PracticeMode';
-import StudyPhase from '@/components/StudyPhase';
 import { Colors, FontSizes, Spacing, BorderRadius } from '@/constants/theme';
 import { useProgress } from '@/context/ProgressContext';
 import { TOPICS } from '@/data/topics';
@@ -17,7 +17,7 @@ export default function QuestionScreen() {
   const { recordAttempt } = useProgress();
 
   const [mode, setMode] = useState<Mode>('study');
-  const [studyPhase, setStudyPhase] = useState(0);
+  const [flowState, setFlowState] = useState(initialFlowState());
 
   const topic = TOPICS.find(t => t.id === topicId);
   const question = topic?.questions.find(q => q.id === questionId);
@@ -74,10 +74,13 @@ export default function QuestionScreen() {
       {/* Content */}
       <View style={styles.content}>
         {mode === 'study' && (
-          <StudyPhase
+          <EmojiStudyFlow
             question={question}
-            currentPhase={studyPhase}
-            onPhaseChange={setStudyPhase}
+            flowState={flowState}
+            onAdvance={() =>
+              setFlowState(s => advanceFlowState(s, question.studyContent.emojiUnits.length))
+            }
+            onGoToPractice={() => setMode('practice')}
           />
         )}
         {mode === 'practice' && (
