@@ -990,11 +990,6 @@ export const TOPICS: Topic[] = [
     color: '#388E3C',
     questions: environmentQuestions,
   },
-  {
-    id: 'school',
-    title: 'School & Education',
-    emojis: '🏫📖👩‍🏫🎓💻',
-    color: '#5C6BC0',
-    questions: schoolQuestions,
-  },
+  
+  ,
 ];
