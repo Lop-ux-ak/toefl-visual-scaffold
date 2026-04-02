@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(find C:\\\\Users\\\\86183\\\\Documents\\\\toefl-visual-scaffold:*)",
+      "Bash(winget upgrade:*)"
     ]
   }
 }

@@ -2,13 +2,21 @@ import TopicCard from '@/components/TopicCard';
 import { Colors, Spacing, FontSizes } from '@/constants/theme';
 import { TOPICS } from '@/data/topics';
 import { useProgress } from '@/context/ProgressContext';
+import { callAI } from '@/lib/ai';
 import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const router = useRouter();
   const { progress } = useProgress();
+
+  useEffect(() => {
+    callAI('you are helpful', 'say hello')
+      .then(result => console.log('[AI test]', result))
+      .catch(err => console.error('[AI test error]', err));
+  }, []);
 
   const getTopicProgress = (topicId: string) => {
     const tp = progress.topics[topicId];
